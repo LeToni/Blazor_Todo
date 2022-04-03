@@ -3,17 +3,17 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:16566",
-      "sslPort": 44362
+      "applicationUrl": "http://localhost:35308",
+      "sslPort": 44398
     }
   },
   "profiles": {
-    "src": {
+    "Blazor_Todo": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
-      "applicationUrl": "https://localhost:7101;http://localhost:5028",
+      "applicationUrl": "https://localhost:7055;http://localhost:5099",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

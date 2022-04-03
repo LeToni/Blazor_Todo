@@ -20,7 +20,7 @@ jobs:
         dotnet-version: 6.0.200
         
     - name: Publish App
-      run: dotnet publish src/Blazor_Todo/Blazor_Todo.csproj -c Release
+      run: dotnet publish src/Blazor_Todo/Blazor_Todo.csproj -c Release -o release
       
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.2.5

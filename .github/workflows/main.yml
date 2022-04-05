@@ -22,6 +22,9 @@ jobs:
     - name: Publish App
       run: dotnet publish src/Blazor_Todo/Blazor_Todo.csproj -c Release -o release
       
+    - name: Change base-tag in index.html from / to Blazor_Todo  
+      run: sed -i 's/<base href="\/" \/>/<base href="\/Blazor_Todo\/" \/>/g' release/wwwroot/index.html
+      
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4.2.5
       with:

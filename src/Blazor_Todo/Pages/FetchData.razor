@@ -1,6 +1,7 @@
 ﻿@page "/fetchdata"
 @inject HttpClient Http
-
+@using Blazor_Todo.Models
+@inject IJSRuntime js
 <PageTitle>Weather forecast</PageTitle>
 
 <h1>Weather forecast</h1>
@@ -36,14 +37,38 @@ else
     </table>
 }
 
+@if (pos == null)
+{
+    <p><em>@message</em></p>
+}
+else
+{
+    <h2>Latitude: @pos.Latitude, Longitude: @pos.Longitude</h2>
+}
 @code {
     private WeatherForecast[]? forecasts;
-
+    private string message = "Loading...";
+    GeoPosition pos;
+    
     protected override async Task OnInitializedAsync()
     {
         forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+
+        try
+        {
+            await GetPosition();
+        }
+        catch (Exception)
+        {
+            message = "Geolocation is not supported";
+        }
     }
 
+    private async Task GetPosition()
+    {
+        pos = await js.InvokeAsync<GeoPosition>("geolocationInterop.getPosition");
+    }
+    
     public class WeatherForecast
     {
         public DateTime Date { get; set; }
